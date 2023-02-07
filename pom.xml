@@ -17,9 +17,7 @@
 	<!-- sub modules -->
 	<modules>
 		<module>bl</module>
-		<module>ui</module>
 		<module>ui-ionic</module>
-		<module>ui-angular</module>
 	</modules>
 	<properties>
 		<java.version>17</java.version>

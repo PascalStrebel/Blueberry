@@ -50,12 +50,13 @@
 import {IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonButton, IonLabel, IonInput, IonItem} from '@ionic/vue';
 import {onMounted, reactive, ref} from "vue";
 import axios from "axios";
+import {Todo} from "@/model/model";
 
 let todo = reactive({
   id: 0,
   name: "",
   description: ""
-});
+} as Todo);
 let values = reactive([]);
 let showCreateUpdate = ref(false);
 
@@ -64,14 +65,14 @@ onMounted(() => {
 })
 
 function load() {
-  axios.get('http://localhost:8080/blueberry/todos').then(todo => {
+  axios.get('http://localhost:8000/blueberry/todos').then(todo => {
     values = todo.data
   });
 }
 
 function create() {
   console.log(todo)
-  axios.post('http://localhost:8080/blueberry/todos/create', JSON.stringify(todo), {
+  axios.post('http://localhost:8000/blueberry/todos/create', JSON.stringify(todo), {
     headers: {
       "Content-Type": "application/json"
     }
@@ -83,7 +84,7 @@ function create() {
 function deleteItem(id: number) {
   console.log(values)
   console.log(id)
-  axios.post('http://localhost:8080/blueberry/todos/delete', JSON.stringify(values.find((value: any) => value.id === id)), {
+  axios.post('http://localhost:8000/blueberry/todos/delete', JSON.stringify(values.find((value: any) => value.id === id)), {
     headers: {
       "Content-Type": "application/json"
     }
